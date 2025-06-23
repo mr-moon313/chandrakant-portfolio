@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="="en">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,14 +7,48 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header>
+  <nav class="navbar">
+    <div class="container">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#testimonials">Testimonials</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <header id="home">
     <div class="container">
       <h1>Chandrakant Malli</h1>
-      <p>Graphic Designer | Social Media · Print · Branding · Tech</p>
+      <p>Senior Graphic Designer | Social Media · Print · Branding · Tech</p>
       <button id="darkToggle">🌙 Toggle Dark Mode</button>
     </div>
   </header>
-  <section class="projects reveal">
+
+  <section id="about" class="reveal">
+    <div class="container">
+      <h2>About Me</h2>
+      <p>I’m a passionate graphic designer with 4+ years of experience in social media campaigns, lifestyle branding, healthcare, tech, and education sector designs. I turn concepts into stunning visuals that connect with audiences and drive results.</p>
+    </div>
+  </section>
+
+  <section id="skills" class="reveal">
+    <div class="container">
+      <h2>Skills</h2>
+      <ul class="skills">
+        <li>Adobe Photoshop</li>
+        <li>Adobe Illustrator</li>
+        <li>InDesign</li>
+        <li>Adobe XD</li>
+        <li>Figma</li>
+        <li>Canva</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="projects" class="projects reveal">
     <div class="container">
       <h2>Featured Projects</h2>
       <div class="project-grid">
@@ -33,16 +67,39 @@
       </div>
     </div>
   </section>
-  <section class="contact reveal">
+
+  <section id="gallery" class="gallery reveal">
     <div class="container">
-      <h2>Contact Me</h2>
-      <p>Email: mallichandru007@gmail.com</p>
-      <p>Phone: +91-8088893393</p>
+      <h2>Project Gallery</h2>
+      <div class="gallery-grid">
+        <img src="https://via.placeholder.com/300x200?text=Design+1" alt="Design 1" />
+        <img src="https://via.placeholder.com/300x200?text=Design+2" alt="Design 2" />
+        <img src="https://via.placeholder.com/300x200?text=Design+3" alt="Design 3" />
+      </div>
     </div>
   </section>
-  <a href="https://wa.me/918088893393" class="whatsapp" target="_blank">
+
+  <section id="testimonials" class="reveal">
+    <div class="container">
+      <h2>Testimonials</h2>
+      <blockquote>“Chandrakant delivered high-quality creative work that exceeded expectations!” – Client A</blockquote>
+      <blockquote>“A talented designer who understands branding and visual storytelling.” – Client B</blockquote>
+    </div>
+  </section>
+
+  <section id="contact" class="contact reveal">
+    <div class="container">
+      <h2>Contact Me</h2>
+      <p>Email: chandrakant@email.com</p>
+      <p>Phone: +91-9876543210</p>
+      <a class="resume" href="https://drive.google.com/file/d/your_resume_id/view" target="_blank">📄 Download Resume</a>
+    </div>
+  </section>
+
+  <a href="https://wa.me/919876543210" class="whatsapp" target="_blank">
     <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp" />
   </a>
+
   <footer class="reveal">
     <div class="container">
       <p>&copy; 2025 Chandrakant Malli</p>
