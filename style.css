@@ -230,3 +230,23 @@ blockquote {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  padding: 30px 15px;
+}
+
+.project-item img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  object-fit: cover;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.project-item img:hover {
+  transform: scale(1.03);
+  cursor: pointer;
+}
