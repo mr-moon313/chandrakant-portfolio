@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Chandrakant Malli | Graphic Designer</title>
-  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <nav class="navbar">
@@ -30,7 +30,7 @@
   <section id="about" class="reveal">
     <div class="container">
       <h2>About Me</h2>
-      <p>I’m a passionate graphic designer with 4+ years of experience in social media campaigns, lifestyle branding, healthcare, tech, and education sector designs. I turn concepts into stunning visuals that connect with audiences and drive results.</p>
+      <p>I’m a passionate graphic designer with 4+ years of experience in social media campaigns, lifestyle branding, healthcare, tech, and education sector designs.</p>
     </div>
   </section>
 
@@ -73,23 +73,17 @@
       <h2>Project Gallery</h2>
       <div class="gallery-grid">
         <div class="gallery-item">
-          <img class="lightbox-trigger" src="artboard-6.jpeg" alt="Gut Health Campaign for Aster Hospital"/>
+          <img src="artboard-6.jpeg" alt="Gut Health Campaign" onclick="openLightbox(this.src)" />
         </div>
         <div class="gallery-item">
-          <img class="lightbox-trigger" src="artboard-48.jpg" alt="Featherlite Campaign Poster"/>
+          <img src="artboard-48.jpg" alt="Nutrition Quiz Campaign" onclick="openLightbox(this.src)" />
         </div>
         <div class="gallery-item">
-          <img class="lightbox-trigger" src="featherlite.jpg" alt="Lifestyle Branding Graphic"/>
+          <img src="artboard-24.jpg" alt="Featherlite Furniture Campaign" onclick="openLightbox(this.src)" />
         </div>
       </div>
     </div>
   </section>
-
-  <!-- Lightbox Modal -->
-  <div id="lightbox">
-    <span class="close">&times;</span>
-    <img id="lightbox-img" src="" alt="Expanded View">
-  </div>
 
   <section id="testimonials" class="reveal">
     <div class="container">
@@ -109,13 +103,20 @@
   </section>
 
   <a href="https://wa.me/918088893393" class="whatsapp" target="_blank">
-    <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp"/>
+    <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp" />
   </a>
+
+  <div id="lightbox" onclick="closeLightbox()">
+    <span class="close">&times;</span>
+    <img src="" alt="Enlarged Design" />
+  </div>
 
   <footer class="reveal">
     <div class="container">
       <p>&copy; 2025 Chandrakant Malli</p>
     </div>
   </footer>
-</html>
 
+  <script src="script.js"></script>
+</body>
+</html>
