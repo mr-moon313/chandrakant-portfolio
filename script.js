@@ -1,42 +1,51 @@
-// Reveal animation on scroll
-const reveals = document.querySelectorAll('.reveal');
-const toggleReveal = () => {
-  for (const el of reveals) {
-    const top = el.getBoundingClientRect().top;
+// script.js
+
+document.addEventListener("DOMContentLoaded", () => {
+  const revealElements = document.querySelectorAll(".reveal");
+
+  function revealOnScroll() {
     const windowHeight = window.innerHeight;
-    if (top < windowHeight - 100) el.classList.add('visible');
+
+    revealElements.forEach((el) => {
+      const elementTop = el.getBoundingClientRect().top;
+      if (elementTop < windowHeight - 50) {
+        el.classList.add("active");
+      }
+    });
   }
-};
 
-window.addEventListener('scroll', toggleReveal);
-window.addEventListener('load', toggleReveal);
+  window.addEventListener("scroll", revealOnScroll);
+  revealOnScroll();
 
-// Dark mode toggle
-const toggleBtn = document.getElementById('darkToggle');
-toggleBtn.addEventListener('click', () => {
-  document.body.classList.toggle('dark');
-});
-
-// Lightbox feature
-const lightbox = document.getElementById('lightbox');
-const lightboxImg = document.getElementById('lightbox-img');
-const closeBtn = document.querySelector('.close');
-
-const triggers = document.querySelectorAll('.lightbox-trigger');
-triggers.forEach(img => {
-  img.addEventListener('click', () => {
-    lightbox.style.display = 'flex';
-    lightboxImg.src = img.src;
-    lightboxImg.alt = img.alt;
+  // Toggle dark mode
+  document.getElementById("darkToggle").addEventListener("click", () => {
+    document.body.classList.toggle("dark-mode");
   });
-});
 
-closeBtn.addEventListener('click', () => {
-  lightbox.style.display = 'none';
-});
+  // Gallery image zoom
+  const galleryImages = document.querySelectorAll(".gallery-grid img");
+  const lightbox = document.createElement("div");
+  lightbox.id = "lightbox";
+  lightbox.innerHTML = `<span class="close">&times;</span><img />`;
+  document.body.appendChild(lightbox);
 
-lightbox.addEventListener('click', (e) => {
-  if (e.target === lightbox || e.target === lightboxImg) {
-    lightbox.style.display = 'none';
-  }
+  const lightboxImg = lightbox.querySelector("img");
+  const closeBtn = lightbox.querySelector(".close");
+
+  galleryImages.forEach((img) => {
+    img.addEventListener("click", () => {
+      lightbox.style.display = "flex";
+      lightboxImg.src = img.src;
+    });
+  });
+
+  closeBtn.addEventListener("click", () => {
+    lightbox.style.display = "none";
+  });
+
+  lightbox.addEventListener("click", (e) => {
+    if (e.target === lightbox) {
+      lightbox.style.display = "none";
+    }
+  });
 });
