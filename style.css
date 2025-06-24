@@ -1,8 +1,9 @@
+/* === BASE === */
 body {
   font-family: 'Poppins', sans-serif;
-  background: #f4f4f4;
-  color: #333;
   margin: 0;
+  background: #f8f8f8;
+  color: #333;
   transition: background 0.3s, color 0.3s;
 }
 body.dark-mode {
@@ -11,15 +12,33 @@ body.dark-mode {
 }
 .container {
   width: 90%;
-  max-width: 1100px;
+  max-width: 1200px;
   margin: auto;
   padding: 2rem 0;
 }
+
+/* === NAVBAR === */
+.navbar {
+  background: #111;
+  padding: 1rem;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  text-align: center;
+}
+.navbar a {
+  color: #fff;
+  margin: 0 1rem;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* === HEADER === */
 header {
   background: #111;
   color: white;
   text-align: center;
-  padding: 3rem 1rem;
+  padding: 4rem 2rem;
   position: relative;
 }
 #darkToggle {
@@ -32,74 +51,19 @@ header {
   border-radius: 5px;
   cursor: pointer;
 }
-.projects h2, .contact h2 {
-  margin-bottom: 1.5rem;
-  text-align: center;
-}
-.project-grid {
-  display: grid;
-  gap: 1.5rem;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-}
-.project-card {
-  background: white;
-  border-radius: 10px;
-  padding: 1rem;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
-}
-.project-card:hover {
-  transform: translateY(-5px);
-}
-body.dark-mode .project-card {
-  background: #1e1e1e;
-}
-.contact {
-  text-align: center;
-  padding: 3rem 1rem;
-}
-footer {
-  background: #111;
-  color: white;
-  text-align: center;
-  padding: 1rem;
-}
-.whatsapp {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  z-index: 1000;
-}
-.whatsapp img {
-  width: 50px;
-  transition: transform 0.3s;
-}
-.whatsapp img:hover {
-  transform: scale(1.1);
-}
+
+/* === SECTIONS === */
 .reveal {
   opacity: 0;
   transform: translateY(20px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  transition: 0.6s ease-in-out;
 }
 .reveal.active {
   opacity: 1;
-  transform: translateY(0);
+  transform: none;
 }
 
-.navbar {
-  background: #111;
-  padding: 1rem;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-.navbar a {
-  color: white;
-  margin: 0 1rem;
-  text-decoration: none;
-  font-weight: 500;
-}
+/* === SKILLS === */
 .skills {
   list-style: none;
   padding: 0;
@@ -111,75 +75,142 @@ footer {
 .skills li {
   background: #eee;
   padding: 0.5rem 1rem;
-  border-radius: 5px;
+  border-radius: 20px;
 }
 body.dark-mode .skills li {
   background: #222;
-}
-.gallery-grid {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-.gallery-grid img {
-  width: 300px;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-}
-.resume {
-  display: inline-block;
-  margin-top: 1rem;
-  background: #111;
-  color: white;
-  padding: 0.7rem 1.5rem;
-  border-radius: 5px;
-  text-decoration: none;
-}
-.resume:hover {
-  background: #333;
-}
-blockquote {
-  font-style: italic;
-  margin: 1rem auto;
-  max-width: 600px;
-  text-align: center;
-}
-.gallery-grid {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-  justify-content: center;
+  color: #fff;
 }
 
+/* === PROJECTS === */
+.projects h2,
+.contact h2 {
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+.project-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  padding: 1rem;
+  transition: transform 0.3s;
+}
+.project-card:hover {
+  transform: translateY(-5px);
+}
+body.dark-mode .project-card {
+  background: #1e1e1e;
+  color: #f0f0f0;
+}
+
+/* === GALLERY === */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+  justify-content: center;
+}
 .gallery-item {
-  display: inline-block;
   overflow: hidden;
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-
 .gallery-item img {
   display: block;
   width: 100%;
   height: auto;
   border-radius: 12px;
   transition: transform 0.3s ease;
+  object-fit: cover;
+  max-height: 200px;
 }
-
 .gallery-item:hover {
   transform: scale(1.05);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
 }
-
 .gallery-item:hover img {
   transform: scale(1.1);
 }
 
-/* Optional: make images uniform size */
-.gallery-item img {
-  max-width: 300px;
-  max-height: 200px;
-  object-fit: cover;
+/* === LIGHTBOX === */
+#lightbox {
+  position: fixed;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0,0,0,0.9);
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 2000;
 }
+#lightbox img {
+  max-width: 90%;
+  max-height: 80%;
+  border-radius: 10px;
+}
+#lightbox .close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 2rem;
+  color: white;
+  cursor: pointer;
+}
+
+/* === TESTIMONIALS & CONTACT === */
+blockquote {
+  font-style: italic;
+  margin: 1rem auto;
+  max-width: 600px;
+  text-align: center;
+}
+.contact {
+  text-align: center;
+  padding: 3rem 1rem;
+}
+.contact a.resume {
+  display: inline-block;
+  margin-top: 1rem;
+  background: #000;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  text-decoration: none;
+}
+.resume:hover {
+  background: #333;
+}
+
+/* === WHATSAPP ICON === */
+.whatsapp {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+.whatsapp img {
+  width: 50px;
+  height: 50px;
+  transition: transform 0.3s;
+}
+.whatsapp img:hover {
+  transform: scale(1.1);
+}
+
+/* === FOOTER === */
+footer {
+  background: #111;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+}
+
