@@ -250,3 +250,28 @@ blockquote {
   transform: scale(1.03);
   cursor: pointer;
 }
+
+/* ===== Banner Section ===== */
+#banner {
+  background-image: url('banner-hero.jpg'); 
+  background-size: cover;
+  background-position: center;
+  padding: 100px 20px;
+  text-align: center;
+  color: white;
+  position: relative;
+}
+
+#banner::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.4); /* Optional dark overlay */
+  z-index: 1;
+}
+
+#banner .container {
+  position: relative;
+  z-index: 2;
+}
