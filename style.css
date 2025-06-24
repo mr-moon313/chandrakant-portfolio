@@ -22,14 +22,14 @@ body.dark-mode {
 
 header {
   background: #449faa;
-  color: white;
+  color: cyan;
   text-align: center;
   padding: 3rem 1rem;
   position: relative;
 }
 
 #darkToggle {
-  position: absolute;
+  position: fixed;
   top: 20px;
   right: 20px;
   padding: 0.5rem 1rem;
