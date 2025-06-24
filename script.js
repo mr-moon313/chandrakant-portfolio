@@ -1,24 +1,42 @@
-// Toggle dark mode
-const toggleButton = document.getElementById('darkToggle');
-toggleButton.addEventListener('click', () => {
-  document.body.classList.toggle('dark-mode');
+// Reveal animation on scroll
+const reveals = document.querySelectorAll('.reveal');
+const toggleReveal = () => {
+  for (const el of reveals) {
+    const top = el.getBoundingClientRect().top;
+    const windowHeight = window.innerHeight;
+    if (top < windowHeight - 100) el.classList.add('visible');
+  }
+};
+
+window.addEventListener('scroll', toggleReveal);
+window.addEventListener('load', toggleReveal);
+
+// Dark mode toggle
+const toggleBtn = document.getElementById('darkToggle');
+toggleBtn.addEventListener('click', () => {
+  document.body.classList.toggle('dark');
 });
 
-// Scroll reveal animation
-const reveals = document.querySelectorAll('.reveal');
+// Lightbox feature
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightbox-img');
+const closeBtn = document.querySelector('.close');
 
-function revealOnScroll() {
-  const windowHeight = window.innerHeight;
-  for (let i = 0; i < reveals.length; i++) {
-    const elementTop = reveals[i].getBoundingClientRect().top;
-    const elementVisible = 100;
-    if (elementTop < windowHeight - elementVisible) {
-      reveals[i].classList.add('active');
-    } else {
-      reveals[i].classList.remove('active');
-    }
+const triggers = document.querySelectorAll('.lightbox-trigger');
+triggers.forEach(img => {
+  img.addEventListener('click', () => {
+    lightbox.style.display = 'flex';
+    lightboxImg.src = img.src;
+    lightboxImg.alt = img.alt;
+  });
+});
+
+closeBtn.addEventListener('click', () => {
+  lightbox.style.display = 'none';
+});
+
+lightbox.addEventListener('click', (e) => {
+  if (e.target === lightbox || e.target === lightboxImg) {
+    lightbox.style.display = 'none';
   }
-}
-
-window.addEventListener('scroll', revealOnScroll);
-window.addEventListener('load', revealOnScroll);
+});
