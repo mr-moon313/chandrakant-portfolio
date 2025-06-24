@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Chandrakant Malli | Graphic Designer</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
   <nav class="navbar">
@@ -72,16 +72,23 @@
     <div class="container">
       <h2>Project Gallery</h2>
       <div class="gallery-grid">
-        <img src="artboard-6.jpg" alt="Gut Health Campaign for Aster Hospital" class="lightbox-trigger" />
-        <img src="artboard-48.jpg" alt="Google Ads for Exercise Science Academy" class="lightbox-trigger" />
-        <img src="featherlite.jpg" alt="Office Aesthetic for Featherlite" class="lightbox-trigger" />
+        <div class="gallery-item">
+          <img class="lightbox-trigger" src="artboard-6.jpeg" alt="Gut Health Campaign for Aster Hospital"/>
+        </div>
+        <div class="gallery-item">
+          <img class="lightbox-trigger" src="artboard-48.jpg" alt="Featherlite Campaign Poster"/>
+        </div>
+        <div class="gallery-item">
+          <img class="lightbox-trigger" src="featherlite.jpg" alt="Lifestyle Branding Graphic"/>
+        </div>
       </div>
     </div>
   </section>
 
-  <div id="lightbox" class="lightbox">
+  <!-- Lightbox Modal -->
+  <div id="lightbox">
     <span class="close">&times;</span>
-    <img class="lightbox-content" id="lightbox-img" />
+    <img id="lightbox-img" src="" alt="Expanded View">
   </div>
 
   <section id="testimonials" class="reveal">
@@ -102,7 +109,7 @@
   </section>
 
   <a href="https://wa.me/918088893393" class="whatsapp" target="_blank">
-    <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp" />
+    <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp"/>
   </a>
 
   <footer class="reveal">
