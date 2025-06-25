@@ -73,3 +73,36 @@ function openLightbox(src) {
 
   document.body.appendChild(lightbox);
 }
+
+window.addEventListener('load', () => {
+  const sliders = document.querySelectorAll('.glider-contain');
+
+  sliders.forEach((container) => {
+    const glider = new Glider(container.querySelector('.glider'), {
+      slidesToShow: 1.2,
+      slidesToScroll: 1,
+      draggable: true,
+      dots: container.querySelector('.dots'),
+      arrows: {
+        prev: container.querySelector('.glider-prev'),
+        next: container.querySelector('.glider-next')
+      },
+      rewind: true
+    });
+
+    // Autoplay setup for each glider
+    let autoplayTimer;
+    function autoplay() {
+      autoplayTimer = setTimeout(() => {
+        glider.scrollItem(glider.slide + 1, true);
+      }, 3000);
+    }
+
+    glider.ele.addEventListener('glider-animated', () => {
+      clearTimeout(autoplayTimer);
+      autoplay();
+    });
+
+    autoplay();
+  });
+});
