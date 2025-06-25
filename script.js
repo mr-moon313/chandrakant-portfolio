@@ -105,4 +105,34 @@ window.addEventListener('load', () => {
 
     autoplay();
   });
+
+window.addEventListener('load', function () {
+  new Glider(document.querySelector('.glider'), {
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    draggable: true,
+    dots: '.dots',
+    arrows: {
+      prev: '.glider-prev',
+      next: '.glider-next'
+    },
+    scrollLock: true,
+    duration: 0.5,
+    rewind: true,
+    responsive: [
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 2
+        }
+      },
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3
+        }
+      }
+    ]
+  });
 });
+  
