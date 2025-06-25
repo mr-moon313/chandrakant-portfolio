@@ -134,5 +134,37 @@ window.addEventListener('load', function () {
       }
     ]
   });
+document.addEventListener('DOMContentLoaded', function () {
+  const gliders = document.querySelectorAll('.glider');
+  gliders.forEach((gliderEl) => {
+    new Glider(gliderEl, {
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      draggable: true,
+      dots: gliderEl.parentElement.querySelector('.dots'),
+      arrows: {
+        prev: gliderEl.parentElement.querySelector('.glider-prev'),
+        next: gliderEl.parentElement.querySelector('.glider-next')
+      },
+      scrollLock: true,
+      duration: 0.5,
+      rewind: true,
+      responsive: [
+        {
+          breakpoint: 768,
+          settings: {
+            slidesToShow: 2
+          }
+        },
+        {
+          breakpoint: 1024,
+          settings: {
+            slidesToShow: 3
+          }
+        }
+      ]
+    });
+  });
 });
+
   
