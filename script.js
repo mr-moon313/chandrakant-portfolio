@@ -1,9 +1,7 @@
-// ==== Dark Mode Toggle & Reveal Effect ====
-document.addEventListener("DOMContentLoaded", () => {
-  document.getElementById("darkToggle").addEventListener("click", () => {
-    document.body.classList.toggle("dark-mode");
-  });
+// script.js
 
+document.addEventListener("DOMContentLoaded", () => {
+  // Reveal on scroll
   const revealElements = document.querySelectorAll(".reveal");
   function revealOnScroll() {
     const windowHeight = window.innerHeight;
@@ -17,7 +15,12 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("scroll", revealOnScroll);
   revealOnScroll();
 
-  // ==== Lightbox Functionality ====
+  // Toggle dark mode
+  document.getElementById("darkToggle").addEventListener("click", () => {
+    document.body.classList.toggle("dark-mode");
+  });
+
+  // Lightbox setup
   const lightbox = document.createElement("div");
   lightbox.id = "lightbox";
   lightbox.innerHTML = `<span class="close">&times;</span><img />`;
@@ -36,25 +39,14 @@ document.addEventListener("DOMContentLoaded", () => {
   closeBtn.addEventListener("click", () => {
     lightbox.style.display = "none";
   });
+
   lightbox.addEventListener("click", (e) => {
     if (e.target === lightbox) {
       lightbox.style.display = "none";
     }
   });
-
-  // ==== Smooth Scrolling for Navigation ====
-  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-    anchor.addEventListener("click", function (e) {
-      e.preventDefault();
-      const target = document.querySelector(this.getAttribute("href"));
-      if (target) {
-        target.scrollIntoView({ behavior: "smooth" });
-      }
-    });
-  });
 });
 
-// ==== Glider Carousels ====
 window.addEventListener("load", () => {
   document.querySelectorAll(".glider-contain").forEach((container) => {
     const gliderEl = container.querySelector(".glider");
@@ -87,7 +79,7 @@ window.addEventListener("load", () => {
       ]
     });
 
-    // ==== Autoplay with Pause on Hover ====
+    // Autoplay with pause on hover
     let autoplayTimer;
     function autoplay() {
       autoplayTimer = setTimeout(() => {
@@ -106,4 +98,3 @@ window.addEventListener("load", () => {
     autoplay();
   });
 });
-
