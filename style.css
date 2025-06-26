@@ -1,5 +1,4 @@
-/* style.css */
-
+/* Base Styles */
 body {
   font-family: 'Poppins', sans-serif;
   background: #f4f4f4;
@@ -20,31 +19,13 @@ body.dark-mode {
   padding: 2rem 0;
 }
 
-header {
-  background: #449faa;
-  color: cyan;
-  text-align: center;
-  padding: 3rem 1rem;
-  position: relative;
-}
-
-#darkToggle {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  padding: 0.5rem 1rem;
-  background: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
+/* Navbar */
 .navbar {
   background: #111;
   padding: 1rem;
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 1000;
   text-align: center;
 }
 
@@ -55,6 +36,57 @@ header {
   font-weight: 500;
 }
 
+/* Banner */
+#banner {
+  background-image: url('banner-tero.jpg');
+  background-size: cover;
+  background-position: center;
+  padding: 150px 20px;
+  text-align: center;
+  color: white;
+  position: relative;
+}
+
+#banner::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1;
+}
+
+.banner-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.banner-content h1 {
+  font-size: 3rem;
+  margin-bottom: 10px;
+}
+
+.banner-content p {
+  font-size: 1.3rem;
+  font-weight: 300;
+}
+
+/* Dark Mode Toggle */
+#darkToggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 0.5rem 1rem;
+  background: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+/* Skills Section */
 .skills {
   list-style: none;
   padding: 0;
@@ -74,6 +106,7 @@ body.dark-mode .skills li {
   background: #222;
 }
 
+/* Project Cards */
 .project-grid {
   display: grid;
   gap: 1.5rem;
@@ -96,198 +129,7 @@ body.dark-mode .project-card {
   background: #1e1e1e;
 }
 
-.contact {
-  text-align: center;
-  padding: 3rem 1rem;
-}
-
-footer {
-  background: #111;
-  color: white;
-  text-align: center;
-  padding: 1rem;
-}
-
-.whatsapp {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  z-index: 1000;
-}
-
-.whatsapp img {
-  width: 50px;
-  transition: transform 0.3s;
-}
-
-.whatsapp img:hover {
-  transform: scale(1.1);
-}
-
-.reveal {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-}
-
-.reveal.active {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1rem;
-}
-
-.gallery-item {
-  overflow: hidden;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: pointer;
-}
-
-.gallery-item img {
-  display: block;
-  width: 100%;
-  border-radius: 12px;
-  transition: transform 0.3s ease;
-  object-fit: cover;
-  max-height: 200px;
-}
-
-.gallery-item:hover {
-  transform: scale(1.05);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
-}
-
-.gallery-item:hover img {
-  transform: scale(1.1);
-}
-
-#lightbox {
-  position: fixed;
-  display: none;
-  justify-content: center;
-  align-items: center;
-  background: rgba(0, 0, 0, 0.9);
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 2000;
-}
-
-#lightbox img {
-  max-width: 90%;
-  max-height: 80%;
-  border-radius: 10px;
-}
-
-#lightbox .close {
-  position: absolute;
-  top: 20px;
-  right: 30px;
-  font-size: 2rem;
-  color: white;
-  cursor: pointer;
-}
-
-.resume {
-  display: inline-block;
-  margin-top: 1rem;
-  background: #111;
-  color: white;
-  padding: 0.7rem 1.5rem;
-  border-radius: 5px;
-  text-decoration: none;
-}
-
-.resume:hover {
-  background: #333;
-}
-
-blockquote {
-  font-style: italic;
-  margin: 1rem auto;
-  max-width: 600px;
-  text-align: center;
-}
-
-.project-gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
-  padding: 20px;
-}
-
-.project-item img {
-  width: 100%;
-  height: auto;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-}
-
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
-  padding: 30px 15px;
-}
-
-.project-item img {
-  width: 100%;
-  height: auto;
-  border-radius: 12px;
-  object-fit: cover;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
-}
-
-.project-item img:hover {
-  transform: scale(1.03);
-  cursor: pointer;
-}
-
-/* ===== Banner Section ===== */
-#banner {
-  background-image: url('banner-tero.jpg'); 
-  background-size: cover;
-  background-position: center;
-  padding: 150px 20px;
-  text-align: center;
-  color: white;
-  position: relative;
-}
-
-#banner::before {
-  content: "";
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0, 0, 0, 0.4); 
-  z-index: 1;
-}
-
-.banner-content {
-  position: relative;
-  z-index: 2;
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-.banner-content h1 {
-  font-size: 3rem;
-  margin-bottom: 10px;
-}
-
-.banner-content p {
-  font-size: 1.3rem;
-  font-weight: 300;
-}
-
+/* Glider Gallery */
 .glider-contain {
   position: relative;
   margin-bottom: 40px;
@@ -338,3 +180,81 @@ blockquote {
 .dots .glider-dot-active {
   background: #111;
 }
+
+/* Contact & Footer */
+.contact {
+  text-align: center;
+  padding: 3rem 1rem;
+}
+footer {
+  background: #111;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+}
+
+/* WhatsApp Icon */
+.whatsapp {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+.whatsapp img {
+  width: 50px;
+  transition: transform 0.3s;
+}
+.whatsapp img:hover {
+  transform: scale(1.1);
+}
+
+/* Reveal Animation */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Lightbox */
+#lightbox {
+  position: fixed;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.9);
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 2000;
+}
+#lightbox img {
+  max-width: 90%;
+  max-height: 80%;
+  border-radius: 10px;
+}
+#lightbox .close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 2rem;
+  color: white;
+  cursor: pointer;
+}
+
+/* Resume Button */
+.resume {
+  display: inline-block;
+  margin-top: 1rem;
+  background: #111;
+  color: white;
+  padding: 0.7rem 1.5rem;
+  border-radius: 5px;
+  text-decoration: none;
+}
+.resume:hover {
+  background: #333;
