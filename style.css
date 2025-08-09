@@ -1,149 +1,193 @@
-body {
-  font-family: 'Poppins', sans-serif;
+/* General Reset */
+* {
   margin: 0;
-  background: #111;
-  color: white;
-}
-
-header {
-  text-align: center;
-  background: linear-gradient(135deg, #e63946, #111);
-  padding: 2rem;
-}
-
-nav ul {
-  list-style: none;
   padding: 0;
-  display: flex;
-  justify-content: center;
-  gap: 1.5rem;
+  box-sizing: border-box;
 }
 
-nav a {
-  color: white;
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  background: #f4f4f4;
+  color: #333;
+  scroll-behavior: smooth;
+}
+
+/* Navbar */
+.navbar {
+  background: #111;
+  padding: 10px 0;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+.navbar .container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.navbar a {
+  color: #fff;
   text-decoration: none;
   font-weight: 500;
-}
-
-.banner {
-  animation: fadeSlide 1.5s ease-out forwards;
-}
-
-@keyframes fadeSlide {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Resume & Social Buttons */
-.social-buttons {
-  text-align: center;
-  margin-top: 1rem;
-}
-
-.resume {
-  display: inline-block;
-  margin-bottom: 1rem;
-  background: #e63946;
-  color: white;
-  padding: 0.7rem 1.5rem;
-  border-radius: 5px;
-  text-decoration: none;
-  font-weight: bold;
-  transition: background 0.3s ease, transform 0.2s ease;
-}
-
-.resume:hover {
-  background: #c92a35;
-  transform: scale(1.05);
-}
-
-.social-links {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-}
-
-.social-link {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background: #e63946;
-  color: white;
-  padding: 0.6rem 1.2rem;
-  border-radius: 5px;
-  text-decoration: none;
-  font-weight: 500;
-  transition: background 0.3s ease, transform 0.2s ease;
-}
-
-.social-link:hover {
-  background: #c92a35;
-  transform: scale(1.05);
-}
-
-.social-link i {
-  font-size: 1.2rem;
-}
-
-/* Gallery */
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 10px;
-  padding: 1rem;
-}
-
-.gallery-grid img {
-  width: 100%;
-  border-radius: 5px;
-  transition: transform 0.3s ease;
-}
-
-.gallery-grid img:hover {
-  transform: scale(1.05);
-}
-
-.contact-row {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  margin-top: 20px;
-  flex-wrap: wrap; /* allows wrapping on small screens */
-}
-
-.contact-btn {
-  padding: 10px 20px;
-  border-radius: 5px;
-  text-decoration: none;
-  font-weight: bold;
-  color: white;
+  padding: 5px 10px;
   transition: background 0.3s ease;
 }
 
-.contact-btn.linkedin {
-  background-color: #0A66C2; /* LinkedIn Blue */
+.navbar a:hover {
+  background: #444;
+  border-radius: 5px;
 }
 
-.contact-btn.behance {
-  background-color: #1769FF; /* Behance Blue */
+/* Banner */
+#banner {
+  background: linear-gradient(120deg, #ff6f61, #d83f87);
+  color: white;
+  padding: 100px 20px;
+  text-align: center;
+  animation: fadeInBanner 1.5s ease-in-out;
 }
 
-.contact-btn.resume {
-  background-color: #FF5733; /* Resume box color */
+@keyframes fadeInBanner {
+  from { opacity: 0; transform: translateY(-30px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-.contact-btn:hover {
+#darkToggle {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  padding: 8px 12px;
+  border: none;
+  cursor: pointer;
+  background: white;
+  border-radius: 5px;
+}
+
+/* Sections */
+section {
+  padding: 50px 20px;
+}
+
+.container {
+  max-width: 1100px;
+  margin: auto;
+}
+
+/* Skills */
+.skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  list-style: none;
+}
+
+.skills li {
+  background: #eaeaea;
+  padding: 10px 15px;
+  border-radius: 5px;
+}
+
+/* Projects */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.project-card {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Gallery */
+.gallery img {
+  width: 100%;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.gallery img:hover {
+  transform: scale(1.05);
+}
+
+/* Resume Button */
+.resume {
+  display: inline-block;
+  background: #ff9800; /* New color */
+  color: white;
+  padding: 12px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.resume:hover {
+  background: #e68900;
+}
+
+/* Social Links in Contact */
+.contact .social-links {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.contact .social-links a {
+  background: #0077b5; /* LinkedIn Blue by default */
+  color: white;
+  padding: 10px 15px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.contact .social-links a.behance {
+  background: #1769ff; /* Behance Blue */
+}
+
+.contact .social-links a:hover {
   opacity: 0.85;
 }
 
+/* Footer */
 footer {
+  background: #111;
+  color: white;
   text-align: center;
-  padding: 1rem;
-  background: #000;
+  padding: 15px 0;
+}
+
+/* Dark Mode */
+body.dark {
+  background: #121212;
+  color: #eee;
+}
+
+body.dark .navbar {
+  background: #222;
+}
+
+body.dark section {
+  background: #1e1e1e;
+}
+
+body.dark .project-card {
+  background: #2c2c2c;
+}
+
+body.dark .resume {
+  background: #ff5722;
 }
