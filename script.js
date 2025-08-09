@@ -1,75 +1,139 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const revealElements = document.querySelectorAll(".reveal");
-  function revealOnScroll() {
-    const windowHeight = window.innerHeight;
-    revealElements.forEach(el => {
-      const elementTop = el.getBoundingClientRect().top;
-      if (elementTop < windowHeight - 50) el.classList.add("active");
+/* ----------------------
+   script.js
+   - dark mode toggle
+   - reveal on scroll
+   - lightbox
+   - initialize Glider.js for each section
+   - autoplay with pause-on-hover
+   ---------------------- */
+
+document.addEventListener('DOMContentLoaded', () => {
+  /* ---------- Dark toggle ---------- */
+  const darkToggle = document.getElementById('darkToggle');
+  if (darkToggle) {
+    darkToggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      // persist preference in localStorage (optional)
+      if (document.body.classList.contains('dark-mode')) {
+        localStorage.setItem('darkMode', '1');
+      } else {
+        localStorage.removeItem('darkMode');
+      }
     });
+
+    // restore
+    if (localStorage.getItem('darkMode')) {
+      document.body.classList.add('dark-mode');
+    }
   }
-  window.addEventListener("scroll", revealOnScroll);
+
+  /* ---------- Reveal on scroll ---------- */
+  const reveals = document.querySelectorAll('.reveal');
+  const revealOnScroll = () => {
+    const h = window.innerHeight;
+    reveals.forEach(el => {
+      const r = el.getBoundingClientRect();
+      if (r.top < h - 60) el.classList.add('active');
+    });
+  };
+  window.addEventListener('scroll', revealOnScroll);
   revealOnScroll();
 
-  document.getElementById("darkToggle").addEventListener("click", () => {
-    document.body.classList.toggle("dark-mode");
-  });
+  /* ---------- Lightbox ---------- */
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = lightbox ? lightbox.querySelector('img') : null;
+  const closeBtn = lightbox ? lightbox.querySelector('.close') : null;
 
-  const lightbox = document.getElementById("lightbox");
-  const lightboxImg = lightbox.querySelector("img");
-  const closeBtn = lightbox.querySelector(".close");
+  function openLightbox(src) {
+    if (!lightbox) return;
+    lightboxImg.src = src;
+    lightbox.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox() {
+    if (!lightbox) return;
+    lightbox.style.display = 'none';
+    lightboxImg.src = '';
+    document.body.style.overflow = '';
+  }
 
-  document.querySelectorAll(".glider img").forEach(img => {
-    img.addEventListener("click", () => {
-      lightbox.style.display = "flex";
-      lightboxImg.src = img.src;
+  // Attach clicks on gallery images and glider images
+  document.querySelectorAll('#gallery img, .glider img').forEach(img => {
+    img.addEventListener('click', (e) => {
+      openLightbox(e.currentTarget.src);
     });
   });
 
-  closeBtn.addEventListener("click", () => {
-    lightbox.style.display = "none";
-  });
+  if (closeBtn) {
+    closeBtn.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) closeLightbox();
+    });
+  }
 
-  lightbox.addEventListener("click", (e) => {
-    if (e.target === lightbox) lightbox.style.display = "none";
-  });
+  // expose closeLightbox so old markup `onclick="closeLightbox()"` still works
+  window.closeLightbox = closeLightbox;
 });
 
-window.addEventListener("load", () => {
-  document.querySelectorAll(".glider-contain").forEach(container => {
-    const gliderEl = container.querySelector(".glider");
-    const glider = new Glider(gliderEl, {
+/* ---------- Glider init (wait for resources) ---------- */
+window.addEventListener('load', () => {
+  if (typeof Glider === 'undefined') {
+    console.warn('Glider.js not loaded — carousels disabled.');
+    return;
+  }
+
+  // initialize each .glider-contain group
+  document.querySelectorAll('.glider-contain').forEach(container => {
+    const gliderEl = container.querySelector('.glider');
+    const prev = container.querySelector('.glider-prev');
+    const next = container.querySelector('.glider-next');
+    const dots = container.querySelector('.dots');
+
+    if (!gliderEl) return;
+
+    const gl = new Glider(gliderEl, {
       slidesToShow: 1,
       slidesToScroll: 1,
       draggable: true,
-      dots: container.querySelector(".dots"),
-      arrows: {
-        prev: container.querySelector(".glider-prev"),
-        next: container.querySelector(".glider-next")
-      },
-      scrollLock: true,
-      duration: 0.5,
+      dots: dots || undefined,
+      arrows: prev && next ? { prev, next } : undefined,
       rewind: true,
+      scrollLock: true,
+      duration: 0.45,
       responsive: [
-        { breakpoint: 768, settings: { slidesToShow: 2 } },
-        { breakpoint: 1024, settings: { slidesToShow: 3 } }
+        { breakpoint: 700, settings: { slidesToShow: 2 } },
+        { breakpoint: 1000, settings: { slidesToShow: 3 } }
       ]
     });
 
-    let autoplayTimer;
-    const autoplay = () => {
-      autoplayTimer = setTimeout(() => {
-        glider.scrollItem(glider.slide + 1, true);
-      }, 4000);
+    // autoplay per glider
+    let timer = null;
+    const startAutoplay = () => {
+      stopAutoplay();
+      timer = setInterval(() => {
+        try {
+          const nextIndex = (gl.slide + 1) % gl.track.childElementCount;
+          gl.scrollItem(nextIndex);
+        } catch (e) {
+          // ignore
+        }
+      }, 3500);
+    };
+    const stopAutoplay = () => {
+      if (timer) { clearInterval(timer); timer = null; }
     };
 
-    glider.ele.addEventListener("glider-animated", () => {
-      clearTimeout(autoplayTimer);
-      autoplay();
+    // start autoplay
+    startAutoplay();
+
+    // pause on hover
+    container.addEventListener('mouseenter', stopAutoplay);
+    container.addEventListener('mouseleave', startAutoplay);
+
+    // restart on user drag
+    gl.ele.addEventListener('glider-animated', () => {
+      stopAutoplay();
+      startAutoplay();
     });
-
-    container.addEventListener("mouseenter", () => clearTimeout(autoplayTimer));
-    container.addEventListener("mouseleave", autoplay);
-
-    autoplay();
   });
 });
