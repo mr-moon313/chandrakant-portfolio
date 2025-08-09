@@ -272,23 +272,14 @@ body.dark-mode .project-card{ background:#121212; box-shadow:0 6px 18px rgba(255
 /* WhatsApp Floating Button */
 .whatsapp-float {
   position: fixed;
-  width: 60px;      /* size of icon */
-  height: 60px;
-  bottom: 20px;     /* distance from bottom */
-  right: 20px;      /* distance from right */
-  background-color: #25d366;
-  color: #fff;
-  border-radius: 50%;
-  text-align: center;
-  font-size: 30px;
-  box-shadow: 2px 2px 3px #999;
-  z-index: 100;
+  bottom: 20px;
+  right: 20px;
+  z-index: 999;
 }
 
 .whatsapp-float img {
-  width: 100%;      /* makes image fit container */
-  height: auto;
-  border-radius: 50%;
+  width: 50px;
+  height: 50px;
 }
 
 /* ---------- Footer ---------- */
