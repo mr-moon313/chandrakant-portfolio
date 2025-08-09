@@ -269,9 +269,27 @@ body.dark-mode .project-card{ background:#121212; box-shadow:0 6px 18px rgba(255
 #lightbox img{ max-width:92%; max-height:86%; border-radius:8px }
 #lightbox .close{ position:absolute; top:18px; right:22px; color:#fff; font-size:28px; cursor:pointer }
 
-/* ---------- WhatsApp ---------- */
-.whatsapp{ position:fixed; right:20px; bottom:18px; z-index:3000; }
-.whatsapp img{ width:56px; height:56px }
+/* WhatsApp Floating Button */
+.whatsapp-float {
+  position: fixed;
+  width: 60px;      /* size of icon */
+  height: 60px;
+  bottom: 20px;     /* distance from bottom */
+  right: 20px;      /* distance from right */
+  background-color: #25d366;
+  color: #fff;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 30px;
+  box-shadow: 2px 2px 3px #999;
+  z-index: 100;
+}
+
+.whatsapp-float img {
+  width: 100%;      /* makes image fit container */
+  height: auto;
+  border-radius: 50%;
+}
 
 /* ---------- Footer ---------- */
 footer{ background:#0f1720; color:#fff; padding:28px 0; text-align:center; margin-top:24px }
