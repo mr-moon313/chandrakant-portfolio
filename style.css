@@ -59,44 +59,33 @@ body.dark-mode{
 }
 .navbar a:hover{opacity:1;}
 
-/* ---------- Animated Banner ---------- */
-#banner{
-  /* animated gradient background */
-  padding:140px 20px;
-  position:relative;
-  overflow:hidden;
-  text-align:center;
-  color:#fff;
-  display:flex;
-  align-items:center;
-  justify-content:center;
+/* Banner section with static image */
+#banner {
+  padding: 140px 20px;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* New background image */
+  background: url("images/banner-2.jpg") center center/cover no-repeat;
 }
 
-/* animated gradient */
-#banner::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background: linear-gradient(135deg,#ff7a66 0%,#f04f88 35%,#7b4ff0 70%);
-  filter:contrast(.95) saturate(1.05);
-  z-index:0;
-  transform:scale(1.05);
-  animation: bannerShift 12s linear infinite;
-  background-size:400% 400%;
-}
-@keyframes bannerShift{
-  0%{background-position:0% 50%}
-  50%{background-position:100% 50%}
-  100%{background-position:0% 50%}
+/* Remove gradient animation layer */
+#banner::before {
+  content: none;
 }
 
-/* soft overlay so text is readable */
-#banner::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(rgba(0,0,0,0.22), rgba(0,0,0,0.08));
-  z-index:1;
+/* Optional: overlay to make text readable */
+#banner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3); /* slightly dark overlay */
+  z-index: 1;
 }
 
 /* banner content (above overlays) */
