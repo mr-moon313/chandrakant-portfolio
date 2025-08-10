@@ -71,7 +71,7 @@ body.dark-mode{
   justify-content: center;
 
   /* New background image */
-  background: url("images/banner-hero") no-repeat center center/cover;
+  background: url("images/banner-hero.jpg") no-repeat center center/cover;
 }
 
 /* Remove gradient animation layer */
