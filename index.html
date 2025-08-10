@@ -224,7 +224,45 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glider-js@1/glider.min.css" />
 
 <!-- Scripts -->
-<script src="https://cdn.jsdelivr.net/npm/glider-js@1/glider.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/glider-js@1/glider.min.js"></script> 
+<script src="glider.min.js"></script>
+<script>
+new Glider(document.querySelector('.glider'), {
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  draggable: true,
+  rewind: true,
+  arrows: {
+    prev: '.glider-prev',
+    next: '.glider-next'
+  }
+});
+
+// Autoplay loop
+function autoScrollGlider(gliderSelector, delay = 3000) {
+  const gliderElem = document.querySelector(gliderSelector);
+  const nextBtn = gliderElem.querySelector('.glider-next');
+  let autoPlay;
+
+  function startAutoPlay() {
+    autoPlay = setInterval(() => {
+      nextBtn.click();
+    }, delay);
+  }
+
+  function stopAutoPlay() {
+    clearInterval(autoPlay);
+  }
+
+  startAutoPlay();
+
+  // Pause on hover
+  gliderElem.addEventListener('mouseover', stopAutoPlay);
+  gliderElem.addEventListener('mouseout', startAutoPlay);
+}
+
+autoScrollGlider('.glider', 3000);
+</script>
 <script src="script.js"></script>
 
 </body>
