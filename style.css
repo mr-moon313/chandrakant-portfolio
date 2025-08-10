@@ -206,10 +206,29 @@ body.dark-mode .skills li{ background:#222; color:#ddd }
 body.dark-mode .project-card{ background:#121212; box-shadow:0 6px 18px rgba(255,255,255,0.02) }
 
 /* ---------- Glider / Gallery ---------- */
-.glider-contain{ position:relative; margin:18px 0 42px; }
-.glider{ display:flex; gap:14px; align-items:center; }
-.glider img{ width: auto; max-height:550px; max-width: 100%; object-fit:contain; border-radius:10px; box-shadow:0 8px 26px rgba(0,0,0,0.08); cursor:pointer; transition:transform .18s ease; }
-.glider img:hover{ transform:scale(1.03) }
+.glider-contain {
+  position: relative;
+  margin: 18px 0 42px;
+}
+
+.glider {
+  display: flex;
+  align-items: center;
+}
+
+.glider img {
+  width: 100%;              /* Fill full width */
+  height: 550px;            /* Tall display */
+  object-fit: cover;        /* Crop nicely */
+  border-radius: 10px;
+  box-shadow: 0 8px 26px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  transition: transform .18s ease;
+}
+
+.glider img:hover {
+  transform: scale(1.03);
+}
 
 /* arrows */
 .glider-prev, .glider-next{
