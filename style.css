@@ -59,7 +59,7 @@ body.dark-mode{
 }
 .navbar a:hover{opacity:1;}
 
-/* Banner section with static image */
+/* Banner Section with Static Image */
 #banner {
   padding: 140px 20px;
   position: relative;
@@ -70,8 +70,8 @@ body.dark-mode{
   align-items: center;
   justify-content: center;
 
-  /* New background image */
-  background: url("images/banner-hero.jpg") no-repeat center center/cover;
+  /* Background image — replace with your actual file name */
+  background: url("images/banner.jpg") no-repeat center center/cover;
 }
 
 /* Remove gradient animation layer */
@@ -79,12 +79,12 @@ body.dark-mode{
   content: none;
 }
 
-/* Optional: overlay to make text readable */
+/* Optional: dark overlay for better text readability */
 #banner::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.3); /* slightly dark overlay */
+  background: rgba(0, 0, 0, 0.3);
   z-index: 1;
 }
 
