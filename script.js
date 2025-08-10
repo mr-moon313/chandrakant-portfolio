@@ -142,4 +142,3 @@ autoScrollGlider('.glider', 3000);
       startAutoplay();
     });
   });
-});
