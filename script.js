@@ -83,28 +83,34 @@ window.addEventListener('load', () => {
   }
 
   // initialize each .glider-contain group
-  document.querySelectorAll('.glider-contain').forEach(container => {
-    const gliderEl = container.querySelector('.glider');
-    const prev = container.querySelector('.glider-prev');
-    const next = container.querySelector('.glider-next');
-    const dots = container.querySelector('.dots');
+new Glider(document.querySelector('.glider'), {
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  draggable: true,
+  dots: '.dots',
+  arrows: {
+    prev: '.glider-prev',
+    next: '.glider-next'
+  },
+  rewind: true
+});
 
-    if (!gliderEl) return;
+function autoScrollGlider(glider, delay = 3000) {
+  let glide = document.querySelector(glider);
+  let interval = setInterval(() => {
+    glide.querySelector('.glider-next').click();
+  }, delay);
+  
+  glide.addEventListener('mouseover', () => clearInterval(interval));
+  glide.addEventListener('mouseout', () => {
+    interval = setInterval(() => {
+      glide.querySelector('.glider-next').click();
+    }, delay);
+  });
+}
 
-    const gl = new Glider(gliderEl, {
-      slidesToShow: 1,
-      slidesToScroll: 1,
-      draggable: true,
-      dots: dots || undefined,
-      arrows: prev && next ? { prev, next } : undefined,
-      rewind: true,
-      scrollLock: true,
-      duration: 0.45,
-      responsive: [
-        { breakpoint: 700, settings: { slidesToShow: 2 } },
-        { breakpoint: 1000, settings: { slidesToShow: 3 } }
-      ]
-    });
+autoScrollGlider('.glider', 3000);
+
 
     // autoplay per glider
     let timer = null;
