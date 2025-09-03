@@ -1,144 +1,101 @@
-/* ----------------------
-   script.js
-   - dark mode toggle
-   - reveal on scroll
-   - lightbox
-   - initialize Glider.js for each section
-   - autoplay with pause-on-hover
-   ---------------------- */
 
-document.addEventListener('DOMContentLoaded', () => {
-  /* ---------- Dark toggle ---------- */
-  const darkToggle = document.getElementById('darkToggle');
-  if (darkToggle) {
-    darkToggle.addEventListener('click', () => {
-      document.body.classList.toggle('dark-mode');
-      // persist preference in localStorage (optional)
-      if (document.body.classList.contains('dark-mode')) {
-        localStorage.setItem('darkMode', '1');
-      } else {
-        localStorage.removeItem('darkMode');
+// script.js
+
+document.addEventListener("DOMContentLoaded", () => {
+  // Reveal on scroll
+  const revealElements = document.querySelectorAll(".reveal");
+  function revealOnScroll() {
+    const windowHeight = window.innerHeight;
+    revealElements.forEach((el) => {
+      const elementTop = el.getBoundingClientRect().top;
+      if (elementTop < windowHeight - 50) {
+        el.classList.add("active");
       }
     });
-
-    // restore
-    if (localStorage.getItem('darkMode')) {
-      document.body.classList.add('dark-mode');
-    }
   }
-
-  /* ---------- Reveal on scroll ---------- */
-  const reveals = document.querySelectorAll('.reveal');
-  const revealOnScroll = () => {
-    const h = window.innerHeight;
-    reveals.forEach(el => {
-      const r = el.getBoundingClientRect();
-      if (r.top < h - 60) el.classList.add('active');
-    });
-  };
-  window.addEventListener('scroll', revealOnScroll);
+  window.addEventListener("scroll", revealOnScroll);
   revealOnScroll();
 
-  /* ---------- Lightbox ---------- */
-  const lightbox = document.getElementById('lightbox');
-  const lightboxImg = lightbox ? lightbox.querySelector('img') : null;
-  const closeBtn = lightbox ? lightbox.querySelector('.close') : null;
+  // Toggle dark mode
+  document.getElementById("darkToggle").addEventListener("click", () => {
+    document.body.classList.toggle("dark-mode");
+  });
 
-  function openLightbox(src) {
-    if (!lightbox) return;
-    lightboxImg.src = src;
-    lightbox.style.display = 'flex';
-    document.body.style.overflow = 'hidden';
-  }
-  function closeLightbox() {
-    if (!lightbox) return;
-    lightbox.style.display = 'none';
-    lightboxImg.src = '';
-    document.body.style.overflow = '';
-  }
+  // Lightbox setup
+  const lightbox = document.createElement("div");
+  lightbox.id = "lightbox";
+  lightbox.innerHTML = `<span class="close">&times;</span><img />`;
+  document.body.appendChild(lightbox);
 
-  // Attach clicks on gallery images and glider images
-  document.querySelectorAll('#gallery img, .glider img').forEach(img => {
-    img.addEventListener('click', (e) => {
-      openLightbox(e.currentTarget.src);
+  const lightboxImg = lightbox.querySelector("img");
+  const closeBtn = lightbox.querySelector(".close");
+
+  document.querySelectorAll(".gallery-grid img, .glider img").forEach((img) => {
+    img.addEventListener("click", () => {
+      lightbox.style.display = "flex";
+      lightboxImg.src = img.src;
     });
   });
 
-  if (closeBtn) {
-    closeBtn.addEventListener('click', closeLightbox);
-    lightbox.addEventListener('click', (e) => {
-      if (e.target === lightbox) closeLightbox();
-    });
-  }
-
-  // expose closeLightbox so old markup `onclick="closeLightbox()"` still works
-  window.closeLightbox = closeLightbox;
-});
-
-/* ---------- Glider init (wait for resources) ---------- */
-window.addEventListener('load', () => {
-  if (typeof Glider === 'undefined') {
-    console.warn('Glider.js not loaded — carousels disabled.');
-    return;
-  }
-
-  // initialize each .glider-contain group
-new Glider(document.querySelector('.glider'), {
-  slidesToShow: 1,
-  slidesToScroll: 1,
-  draggable: true,
-  dots: '.dots',
-  arrows: {
-    prev: '.glider-prev',
-    next: '.glider-next'
-  },
-  rewind: true
-});
-
-function autoScrollGlider(glider, delay = 3000) {
-  let glide = document.querySelector(glider);
-  let interval = setInterval(() => {
-    glide.querySelector('.glider-next').click();
-  }, delay);
-  
-  glide.addEventListener('mouseover', () => clearInterval(interval));
-  glide.addEventListener('mouseout', () => {
-    interval = setInterval(() => {
-      glide.querySelector('.glider-next').click();
-    }, delay);
+  closeBtn.addEventListener("click", () => {
+    lightbox.style.display = "none";
   });
-}
 
-autoScrollGlider('.glider', 3000);
+  lightbox.addEventListener("click", (e) => {
+    if (e.target === lightbox) {
+      lightbox.style.display = "none";
+    }
+  });
+});
 
+window.addEventListener("load", () => {
+  document.querySelectorAll(".glider-contain").forEach((container) => {
+    const gliderEl = container.querySelector(".glider");
 
-    // autoplay per glider
-    let timer = null;
-    const startAutoplay = () => {
-      stopAutoplay();
-      timer = setInterval(() => {
-        try {
-          const nextIndex = (gl.slide + 1) % gl.track.childElementCount;
-          gl.scrollItem(nextIndex);
-        } catch (e) {
-          // ignore
+    const glider = new Glider(gliderEl, {
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      draggable: true,
+      dots: container.querySelector(".dots"),
+      arrows: {
+        prev: container.querySelector(".glider-prev"),
+        next: container.querySelector(".glider-next")
+      },
+      scrollLock: true,
+      duration: 0.5,
+      rewind: true,
+      responsive: [
+        {
+          breakpoint: 768,
+          settings: {
+            slidesToShow: 2
+          }
+        },
+        {
+          breakpoint: 1024,
+          settings: {
+            slidesToShow: 3
+          }
         }
-      }, 3500);
-    };
-    const stopAutoplay = () => {
-      if (timer) { clearInterval(timer); timer = null; }
-    };
-
-    // start autoplay
-    startAutoplay();
-
-    // pause on hover
-    container.addEventListener('mouseenter', stopAutoplay);
-    container.addEventListener('mouseleave', startAutoplay);
-
-    // restart on user drag
-    gl.ele.addEventListener('glider-animated', () => {
-      stopAutoplay();
-      startAutoplay();
+      ]
     });
+
+    // Autoplay with pause on hover
+    let autoplayTimer;
+    function autoplay() {
+      autoplayTimer = setTimeout(() => {
+        glider.scrollItem(glider.slide + 1, true);
+      }, 4000);
+    }
+
+    glider.ele.addEventListener("glider-animated", () => {
+      clearTimeout(autoplayTimer);
+      autoplay();
+    });
+
+    container.addEventListener("mouseenter", () => clearTimeout(autoplayTimer));
+    container.addEventListener("mouseleave", autoplay);
+
+    autoplay();
   });
+});
