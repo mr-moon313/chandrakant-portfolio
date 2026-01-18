@@ -1,72 +1,59 @@
 document.addEventListener("DOMContentLoaded", () => {
   
-  // 1. STAR ANIMATION
+  // --- 1. Star Animation (The Moon & Stars Theme) ---
   const canvas = document.getElementById("stars");
-  if (canvas) {
-    const ctx = canvas.getContext("2d");
-    let stars = [];
+  const ctx = canvas.getContext("2d");
+  let stars = [];
 
-    function resize() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
-    window.addEventListener("resize", resize);
-    resize();
-
-    // Create 200 stars
-    for (let i = 0; i < 200; i++) {
+  function initStars() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    stars = [];
+    // Create stars
+    for (let i = 0; i < 180; i++) {
       stars.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        r: Math.random() * 1.5,
-        dx: (Math.random() - 0.5) * 0.5,
-        dy: (Math.random() - 0.5) * 0.5
+        size: Math.random() * 1.8,
+        opacity: Math.random(),
+        blink: Math.random() * 0.02
       });
     }
-
-    function animate() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = "white";
-      stars.forEach(s => {
-        ctx.beginPath();
-        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-        ctx.fill();
-        s.x += s.dx;
-        s.y += s.dy;
-
-        // Reset stars if they go off screen
-        if (s.x > canvas.width) s.x = 0;
-        if (s.x < 0) s.x = canvas.width;
-        if (s.y > canvas.height) s.y = 0;
-        if (s.y < 0) s.y = canvas.height;
-      });
-      requestAnimationFrame(animate);
-    }
-    animate();
   }
 
-  // 2. REVEAL ON SCROLL
+  function drawStars() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "white";
+    stars.forEach(s => {
+      // Twinkle effect
+      s.opacity += s.blink;
+      if (s.opacity > 1 || s.opacity < 0) s.blink = -s.blink;
+      
+      ctx.globalAlpha = s.opacity;
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
+      ctx.fill();
+    });
+    ctx.globalAlpha = 1;
+    requestAnimationFrame(drawStars);
+  }
+
+  window.addEventListener("resize", initStars);
+  initStars();
+  drawStars();
+
+  // --- 2. Reveal Sections on Scroll ---
   const revealElements = document.querySelectorAll(".reveal");
-  function revealOnScroll() {
+  function checkReveal() {
     revealElements.forEach(el => {
-      const elementTop = el.getBoundingClientRect().top;
-      if (elementTop < window.innerHeight - 50) {
-        el.classList.add("active");
-      }
+      const top = el.getBoundingClientRect().top;
+      if (top < window.innerHeight - 100) el.classList.add("active");
     });
   }
-  window.addEventListener("scroll", revealOnScroll);
-  revealOnScroll();
+  window.addEventListener("scroll", checkReveal);
+  checkReveal();
 
-  // 3. DARK MODE
-  const darkToggle = document.getElementById("darkToggle");
-  if (darkToggle) {
-    darkToggle.addEventListener("click", () => {
-      document.body.classList.toggle("dark-mode");
-    });
-  }
-
-  // 4. LIGHTBOX
+  // --- 3. Lightbox Logic ---
   const lightbox = document.getElementById("lightbox");
   const lightboxImg = lightbox.querySelector("img");
   
@@ -78,13 +65,20 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   lightbox.addEventListener("click", (e) => {
-    if (e.target !== lightboxImg) {
-      lightbox.style.display = "none";
-    }
+    if (e.target !== lightboxImg) lightbox.style.display = "none";
+  });
+
+  // --- 4. Smooth Scrolling ---
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(link.getAttribute('href'));
+      target.scrollIntoView({ behavior: 'smooth' });
+    });
   });
 });
 
-// 5. GLIDER INITIALIZATION (Wait for full load)
+// --- 5. Glider Gallery Initialization ---
 window.addEventListener("load", () => {
   document.querySelectorAll(".glider-contain").forEach(container => {
     new Glider(container.querySelector(".glider"), {
@@ -95,7 +89,6 @@ window.addEventListener("load", () => {
         prev: container.querySelector(".glider-prev"),
         next: container.querySelector(".glider-next")
       },
-      rewind: true,
       responsive: [
         { breakpoint: 768, settings: { slidesToShow: 2 } },
         { breakpoint: 1024, settings: { slidesToShow: 3 } }
