@@ -293,6 +293,13 @@ body.dark-mode .project-card{ background:#121212; box-shadow:0 6px 18px rgba(255
   height: 50px;
 }
 
+canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
 /* ---------- Footer ---------- */
 footer{ background:#0f1720; color:#fff; padding:28px 0; text-align:center; margin-top:24px }
 
