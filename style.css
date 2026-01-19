@@ -112,6 +112,28 @@ canvas#stars {
 
 .resume-btn { background: var(--accent-gold); color: #fff; }
 
+.btn, .behance-btn {
+  padding: 12px 25px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  display: inline-block;
+  transition: 0.3s;
+}
+
+.behance-btn { background: var(--accent-gold); color: #fff; }
+
+.btn, .linkedin-btn {
+  padding: 12px 25px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  display: inline-block;
+  transition: 0.3s;
+}
+
+.linkedin-btn { background: var(--accent-gold); color: #fff; }
+
 /* Lightbox */
 #lightbox {
   position: fixed;
