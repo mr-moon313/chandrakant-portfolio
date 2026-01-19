@@ -181,5 +181,10 @@ canvas#stars {
 .reveal.active { opacity: 1; transform: translateY(0); }
 
 /* WhatsApp */
-.whatsapp-float { position: fixed; bottom: 20px; right: 20px; z-index: 999; }
-.whatsapp-float img { width: 50px; }
+.whatsapp-float {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 10000; /* VERY IMPORTANT */
+  pointer-events: auto;
+}
