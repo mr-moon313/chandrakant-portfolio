@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
 
 :root {
@@ -13,34 +12,6 @@ body {
   color: #fff;
   background-color: #000;
   overflow-x: hidden;
-}
-
-.menu-toggle {
-  display: none;
-  background: none;
-  border: none;
-  color: #fff;
-  font-size: 22px;
-}
-
-@media (max-width: 768px) {
-  .menu-toggle { display: block; }
-  .nav-links { display: none; }
-  .nav-links.open { display: flex; flex-direction: column; }
-}
-
-.project-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-}
-
-section h2::after {
-  content: "";
-  display: block;
-  width: 60px;
-  height: 3px;
-  background: var(--accent-gold);
-  margin: 15px auto;
 }
 
 /* Star Background - Always Fixed */
@@ -141,28 +112,6 @@ canvas#stars {
 
 .resume-btn { background: var(--accent-gold); color: #fff; }
 
-.btn, .behance-btn {
-  padding: 12px 25px;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: 600;
-  display: inline-block;
-  transition: 0.3s;
-}
-
-.behance-btn { background: var(--accent-gold); color: #fff; }
-
-.btn, .linkedin-btn {
-  padding: 12px 25px;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: 600;
-  display: inline-block;
-  transition: 0.3s;
-}
-
-.linkedin-btn { background: var(--accent-gold); color: #fff; }
-
 /* Lightbox */
 #lightbox {
   position: fixed;
@@ -181,10 +130,5 @@ canvas#stars {
 .reveal.active { opacity: 1; transform: translateY(0); }
 
 /* WhatsApp */
-.whatsapp-float {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  z-index: 10000; /* VERY IMPORTANT */
-  pointer-events: auto;
-}
+.whatsapp-float { position: fixed; bottom: 20px; right: 20px; z-index: 999; }
+.whatsapp-float img { width: 50px; }
