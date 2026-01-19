@@ -14,6 +14,57 @@ body {
   overflow-x: hidden;
 }
 
+/* Update :root with Light Mode (Blue Sky) variables */
+:root {
+  --accent-gold: #ff9a2f;
+  --nav-white: rgba(255, 255, 255, 0.1);
+  --glass: rgba(255, 255, 255, 0.05);
+  --text-color: #ffffff;
+  --sky-gradient: radial-gradient(circle at center, #0a0a1a 0%, #000 100%);
+}
+
+/* Light Mode Overrides (Triggered by JS) */
+body.light-mode {
+  --sky-gradient: linear-gradient(to bottom, #4facfe 0%, #00f2fe 100%);
+  --text-color: #1a1a1a;
+  --glass: rgba(0, 0, 0, 0.05);
+}
+
+body {
+  color: var(--text-color);
+  transition: background 0.5s ease, color 0.5s ease;
+}
+
+/* Star Background - Background changes with the gradient */
+canvas#stars {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: var(--sky-gradient);
+}
+
+/* Glass Frame Styling for Sections */
+.glass-frame {
+  background: var(--glass);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 40px !important;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+body.light-mode .glass-frame {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Ensure navbar links stay visible in light mode */
+body.light-mode .nav-links a {
+  color: #000;
+}
+
 /* Star Background - Always Fixed */
 canvas#stars {
   position: fixed;
