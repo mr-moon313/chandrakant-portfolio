@@ -15,6 +15,21 @@ body {
   overflow-x: hidden;
 }
 
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 22px;
+}
+
+@media (max-width: 768px) {
+  .menu-toggle { display: block; }
+  .nav-links { display: none; }
+  .nav-links.open { display: flex; flex-direction: column; }
+}
+
+
 /* Star Background - Always Fixed */
 canvas#stars {
   position: fixed;
