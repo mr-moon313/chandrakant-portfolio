@@ -1,3 +1,4 @@
+
 document.addEventListener("DOMContentLoaded", () => {
 
   /* =====================
@@ -64,12 +65,6 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("resize", initStars);
   initStars();
   startStars();
-
-  document.querySelector(".menu-toggle")
-  ?.addEventListener("click", () =>
-    document.querySelector(".nav-links").classList.toggle("open")
-  );
-
 
   /* =====================
      SCROLL REVEAL
