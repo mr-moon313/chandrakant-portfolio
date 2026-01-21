@@ -64,14 +64,14 @@ canvas#stars {
 
 .nav-links a:hover { color: var(--accent-gold); }
 
-.hero-banner {
+.pero-banner {
   height: 85vh;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   /* Change 0.4 to 0.1 for significantly less opacity */
-  background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url("banner-hero.jpg") center/cover no-repeat;
+  background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url("banner-pero.jpg") center/cover no-repeat;
   margin-bottom: 50px;
 }
 
