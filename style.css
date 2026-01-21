@@ -14,14 +14,18 @@ body {
   overflow-x: hidden;
 }
 
-/* Star Background - Always Fixed */
+/* Star Background with a Centered Realistic Moon */
 canvas#stars {
   position: fixed;
   inset: 0;
   z-index: -1;
-  background: radial-gradient(circle at center, #0a0a1a 0%, #000 100%);
+  background: 
+    /* The Moon Body & Craters moved to 50% 50% */
+    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.05) 0%, transparent 10%), 
+    radial-gradient(circle at 50% 50%, #e0e0e0 0%, #d1d1d1 2%, #808080 3%, transparent 4%),
+    /* Space Background */
+    radial-gradient(circle at center, #0a0a1a 0%, #000 100%);
 }
-
 /* Floating Navigation Bar */
 .navbar {
   position: sticky;
