@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
 
 :root {
@@ -14,22 +15,12 @@ body {
   overflow-x: hidden;
 }
 
-/* Star Background with a Centered Realistic Moon */
+/* Star Background - Always Fixed */
 canvas#stars {
   position: fixed;
   inset: 0;
   z-index: -1;
-  background: 
-    /* The Moon Body & Craters moved to 50% 50% */
-    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.05) 0%, transparent 10%), 
-    radial-gradient(circle at 50% 50%, #e0e0e0 0%, #d1d1d1 2%, #808080 3%, transparent 4%),
-    /* Space Background */
-    radial-gradient(circle at center, #0a0a1a 0%, #000 100%);
-}
-
-/* Add it here */
-#about {
-  padding-top: 150px; 
+  background: radial-gradient(circle at center, #0a0a1a 0%, #000 100%);
 }
 
 /* Floating Navigation Bar */
@@ -64,14 +55,15 @@ canvas#stars {
 
 .nav-links a:hover { color: var(--accent-gold); }
 
-.pero-banner {
+/* Hero Banner with Lower Opacity */
+.hero-banner {
   height: 85vh;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  /* Change 0.4 to 0.1 for significantly less opacity */
-  background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url("banner-pero.jpg") center/cover no-repeat;
+  /* Changed alpha from 0.4 to 0.1 for a lighter look */
+  background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url("banner-hero.jpg") center/cover no-repeat;
   margin-bottom: 50px;
 }
 
@@ -122,6 +114,28 @@ canvas#stars {
 
 .resume-btn { background: var(--accent-gold); color: #fff; }
 
+.btn, .linkedin-btn {
+  padding: 12px 25px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  display: inline-block;
+  transition: 0.3s;
+}
+
+.linkedin-btn { background: var(--accent-gold); color: #fff; }
+
+.btn, .behance-btn {
+  padding: 12px 25px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  display: inline-block;
+  transition: 0.3s;
+}
+
+.behance-btn { background: var(--accent-gold); color: #fff; }
+
 /* Lightbox */
 #lightbox {
   position: fixed;
@@ -142,16 +156,3 @@ canvas#stars {
 /* WhatsApp */
 .whatsapp-float { position: fixed; bottom: 20px; right: 20px; z-index: 999; }
 .whatsapp-float img { width: 50px; }
-
-/* Adjust the moon image transparency */
-.centered-moon {
-  width: 300px; /* Or your preferred size */
-  height: auto;
-  
-  /* Change this value (0.0 to 1.0) to adjust transparency */
-  /* 0.5 makes it 50% transparent */
-  opacity: 0.6; 
-  
-  /* Optional: keeps a slight glow around the edges */
-  filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.2));
-}
