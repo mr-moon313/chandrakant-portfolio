@@ -142,3 +142,16 @@ canvas#stars {
 /* WhatsApp */
 .whatsapp-float { position: fixed; bottom: 20px; right: 20px; z-index: 999; }
 .whatsapp-float img { width: 50px; }
+
+/* Adjust the moon image transparency */
+.centered-moon {
+  width: 300px; /* Or your preferred size */
+  height: auto;
+  
+  /* Change this value (0.0 to 1.0) to adjust transparency */
+  /* 0.5 makes it 50% transparent */
+  opacity: 0.6; 
+  
+  /* Optional: keeps a slight glow around the edges */
+  filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.2));
+}
