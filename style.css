@@ -26,6 +26,12 @@ canvas#stars {
     /* Space Background */
     radial-gradient(circle at center, #0a0a1a 0%, #000 100%);
 }
+
+/* Add it here */
+#about {
+  padding-top: 150px; 
+}
+
 /* Floating Navigation Bar */
 .navbar {
   position: sticky;
